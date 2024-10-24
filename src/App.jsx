@@ -1,17 +1,25 @@
-import { useState } from "react"
+import { Grid } from "@mui/material"
+import { Navbar } from "./components/Navbar"
+import { MainContent } from "./components/Llaves/MainContent"
+import { Sidebar } from "./components/Archivos/Sidebar"
+import './App.css'
+
 
 function App() {
-  const [query, setQuery] = useState('')
 
   return (
-    <div>
-      <h1>Dashboard de Llaves</h1>
-      <input
-        type="text"
-        placeholder="Buscar llaves..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+    <div className="app">
+      <Navbar />
+      <div className="app-content">
+        <Grid container spacing={2} className="grid-container">
+          <Grid item xs={9}>
+            <MainContent />
+          </Grid>
+          <Grid item xs={3}>
+            <Sidebar />
+          </Grid>
+        </Grid>
+      </div>
     </div>
   )
 }
