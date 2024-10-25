@@ -12,12 +12,12 @@ function App() {
       <Navbar />
       <div className="app-content">
         <Grid container spacing={2} className="grid-container">
-          <Grid item xs={9}>
+          <Grid item xs={12}> 
             <MainContent />
           </Grid>
-          <Grid item xs={3}>
+          {/* <Grid item xs={3}> Deben ser 9 y 3
             <Sidebar />
-          </Grid>
+          </Grid> */}
         </Grid>
       </div>
     </div>

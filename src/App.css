@@ -10,21 +10,16 @@
   .app-content {
     flex-grow: 1;
     display: flex;
-    padding-top: 16px;
+    /* padding-top: 16px; */
   }
   
   /* Grid container */
   .grid-container {
     width: 100%;
   }
-  
-  /* Otros estilos que puedes agregar para MainContent y Sidebar */
-  .main-content {
-    padding: 16px;
-  }
-  
-  .sidebar {
+
+  /* .sidebar {
     padding: 16px;
     border-left: 1px solid #ccc;
   }
-  
+   */

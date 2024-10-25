@@ -3,7 +3,7 @@ import React from 'react'
 
 export const Navbar = () => {
   return (
-    <AppBar position='sticky'>
+    <AppBar position='fixed'>
         <Toolbar>
             <Typography variant='h6'>
                 Dahsboard de llaves
