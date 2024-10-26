@@ -9,13 +9,14 @@ export const InputSelectIDC = () => {
     // Función para cargar datacenters y selectedDatacenter desde la API
     const loadDatacenters = async () => {
         try {
-            const response = await fetch(`https://cwp-vidc-scat.cwpanama.com/llaves/selectDatacenter.php`, {
+            const response = await fetch(`https://cwp-vidc-scat.cwpanama.com/llaves/api/selectDatacenter.php`, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json'
                 },
             })
             const data = await response.json()
+            // return console.log(data)
             setDatacenters(data.datacenters) 
             dispatch({ type: 'SET_DATACENTER', payload: data.selectedDatacenter }) 
         } catch (error) {
