@@ -1,0 +1,2 @@
+export const SET_DATACENTER = 'SET_DATACENTER';
+export const SET_DATACENTERS = 'SET_DATACENTERS';
