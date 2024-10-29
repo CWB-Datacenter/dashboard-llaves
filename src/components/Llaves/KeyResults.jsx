@@ -1,27 +1,45 @@
 import { Box, Typography } from '@mui/material'
+import { useContext, useEffect, useState } from 'react'
+import { DatacenterContext } from '../../context/DatacenterContext'
 
 export const KeyResults = ({ searchTerm }) => {
-  // Simulamos datos de ejemplo para las llaves
-  const keys = [
-    { id: 1, nombre: 'Llave A', ubicacion: 'Locación 1' },
-    { id: 2, nombre: 'Llave B', ubicacion: 'Locación 2' },
-    { id: 3, nombre: 'Llave C', ubicacion: 'Locación 3' },
-  ]
+  const { state } = useContext(DatacenterContext) 
+  const { selectedDatacenter } = state
+  const [keys, setKeys] = useState([])
 
-  // Filtrar llaves con base en el término de búsqueda
+  useEffect(() => {
+    const fetchKeys = async () => {
+      try {
+        const response = await fetch(`https://cwp-vidc-scat.cwpanama.com/llaves/api/selectLlaves.php?datacenter_id=${selectedDatacenter}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+      })
+      const data = await response.json()
+      setKeys(data)
+      } catch (error) {
+        console.error("Error al obtener llaves:", error);
+      }
+    }
+    if (selectedDatacenter) fetchKeys()
+  }, [selectedDatacenter])
+  
+  // Filtrar llaves en base al término de búsqueda
   const filteredKeys = keys.filter(key =>
-    key.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    key.cliente_equipo.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   return (
-    <Box>
-      {filteredKeys.length > 0 ? (
-        filteredKeys.map(key => (
-          <Typography key={key.id}>{key.nombre} - {key.ubicacion}</Typography>
-        ))
-      ) : (
-        <Typography>No se encontraron llaves</Typography>
-      )}
-    </Box>
+    <p>Como mostrar las llaves aquí...</p>
+    // <Box>
+    //   { filteredKeys.length > 0 ? (
+    //     filteredKeys.map(key => (
+    //       <Typography key={key.id}>{key.cliente_equipo} - {key.ubicacion}</Typography>
+    //     ))
+    //   ) : (
+    //     <Typography>No se encontraron llaves</Typography>
+    //   )}
+    // </Box>
   )
 }
