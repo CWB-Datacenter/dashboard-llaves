@@ -1,9 +1,13 @@
 import { Box } from '@mui/material'
+import { useState } from 'react'
 import { InputSearch } from '../InputSearch'
 import { KeyResults } from './KeyResults'
 import { InputSelectIDC } from './InputSelectIDC'
 
 export const MainContent = () => {
+
+  const [searchTerm, setSearchTerm] = useState('')
+
   return (
     <Box sx={{
       display: 'flex',
@@ -15,8 +19,8 @@ export const MainContent = () => {
       height: '100vh'
     }}>
       <InputSelectIDC />
-      <InputSearch />
-      <KeyResults />
+      <InputSearch setSearchTerm={ setSearchTerm } />
+      <KeyResults searchTerm={ searchTerm }/>
     </Box>
   )
 }
