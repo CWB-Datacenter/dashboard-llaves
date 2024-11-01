@@ -5,7 +5,6 @@ import { KeyResults } from './KeyResults'
 import { InputSelectIDC } from './InputSelectIDC'
 
 export const MainContent = () => {
-
   const [searchTerm, setSearchTerm] = useState('')
 
   return (

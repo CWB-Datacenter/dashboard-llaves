@@ -1,41 +1,15 @@
 import { Box, Typography } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
-import { DatacenterContext } from '../../context/DatacenterContext'
+import { KeysContext } from '../../context/llaves/KeysContext'
 
 export const KeyResults = ({ searchTerm }) => {
-  const { state } = useContext(DatacenterContext) 
-  const { selectedDatacenter } = state
-  const [keys, setKeys] = useState([])
-  const [loading, setLoading] = useState(false)
+  const { state } = useContext(KeysContext)
+  const { keys, loading } = state
 
-  useEffect(() => {
-    const fetchKeys = async () => {
-      if (!selectedDatacenter) return
-      setLoading(true)
-      try {
-        const response = await fetch(`https://cwp-vidc-scat.cwpanama.com/llaves/api/selectLlaves.php?datacenter_id=${selectedDatacenter}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-      })
-      const data = await response.json()
-      console.log(data)
-      setKeys(data)
-      } catch (error) {
-        console.error("Error al obtener llaves:", error)
-        setKeys([])
-      }
-      setLoading(false)
-    }
-    if (selectedDatacenter) fetchKeys()
-  }, [selectedDatacenter])
-  
   // Filtrar llaves en base al término de búsqueda
   const filteredKeys = keys.filter(key =>
     key.cliente_equipo.toLowerCase().includes(searchTerm.toLowerCase())
   )
-
   return (
     <Box>
       {loading ? (
