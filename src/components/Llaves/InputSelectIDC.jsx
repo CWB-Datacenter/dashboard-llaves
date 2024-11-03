@@ -4,7 +4,7 @@ import { FormControl, MenuItem, Select, InputLabel } from '@mui/material'
 import { KeysContext } from '../../context/llaves/KeysContext'
 
 export const InputSelectIDC = () => {
-    const { state, dispatch } = useContext(DatacenterContext) // Solo usamos selectedDatacenter del contexto
+    const { state, setSelectedDatacenter } = useContext(DatacenterContext) // Solo usamos selectedDatacenter del contexto
     const { fetchKeys } = useContext(KeysContext)
     const [datacenters, setDatacenters] = useState([]) // Estado local para datacenters
 
@@ -19,8 +19,8 @@ export const InputSelectIDC = () => {
             })
             const data = await response.json()
             // return console.log(data)
-            setDatacenters(data.datacenters) 
-            dispatch({ type: 'SET_DATACENTER', payload: data.selectedDatacenter }) 
+            setDatacenters(data.datacenters) // manejo de datacenters local para el select (estado local)
+            setSelectedDatacenter(data.selectedDatacenter) // Establece en el estado el datacenter seleccionado
             fetchKeys(data.selectedDatacenter)
         } catch (error) {
             console.error('Error al cargar los datacenters:', error)
@@ -34,8 +34,9 @@ export const InputSelectIDC = () => {
 
     // Maneja el cambio de selección en el <Select>
     const handleChange = (event) => {
-        dispatch({ type: 'SET_DATACENTER', payload: Number(event.target.value) })
-        fetchKeys(Number(event.target.value))
+        const selectedDatacenterId = Number(event.target.value)
+        setSelectedDatacenter(selectedDatacenterId)
+        fetchKeys(selectedDatacenterId)
     }
 
     return (

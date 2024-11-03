@@ -1,2 +1,7 @@
 export const SET_DATACENTER = 'SET_DATACENTER';
-export const SET_DATACENTERS = 'SET_DATACENTERS';
+
+//Acción para establecer el datacenter seleccionado
+export const setDatacenterAction = (datacenterId) => ({
+    type: SET_DATACENTER,
+    payload: datacenterId
+})
