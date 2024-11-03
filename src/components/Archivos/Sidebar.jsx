@@ -1,9 +1,10 @@
 import React from 'react'
+import { CargarArchivos } from './CargarArchivos'
 
 export const Sidebar = () => {
   return (
     <div className='sidebar'>
-        SIDEBAR
+       <CargarArchivos />
     </div>
   )
 }
