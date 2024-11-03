@@ -5,18 +5,18 @@ export const actionTypes = {
 }
 
 // Acción para establecer las llaves en el estado
-export const setKeys = (keys) => ({
+export const setKeysAction = (keys) => ({
     type: actionTypes.SET_KEYS,
     payload: keys,
 })
 
 // Acción para establecer el estado de carga
-export const setLoading = (isLoading) => ({
+export const setLoadingAction = (isLoading) => ({
     type: actionTypes.SET_LOADING,
     payload: isLoading,
 })
 
 // Acción para resetear las llaves
-export const resetKeys = () => ({
+export const resetKeysAction = () => ({
     type: actionTypes.RESET_KEYS,
 })

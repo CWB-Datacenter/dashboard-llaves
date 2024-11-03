@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DatacenterContext } from '../../context/DatacenterContext'
-import { FormControl, MenuItem, Select, InputLabel } from '@mui/material'
+import { FormControl, MenuItem, Select } from '@mui/material'
 import { KeysContext } from '../../context/llaves/KeysContext'
 
 export const InputSelectIDC = () => {

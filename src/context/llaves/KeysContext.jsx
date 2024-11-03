@@ -1,14 +1,26 @@
 import { createContext, useReducer } from 'react'
 import { keysReducer, initialState } from './keysReducer'
-import { setKeys, setLoading, resetKeys } from './keysActions'
+import { setKeysAction, setLoadingAction, resetKeysAction } from './keysActions'
 
 export const KeysContext = createContext()
 
 export const KeysProvider = ({ children }) => {
     const [state, dispatch] = useReducer(keysReducer, initialState)
 
+    const setKeys = (keys) => {
+        dispatch(setKeysAction(keys))
+    }
+
+    const setLoading = (isLoading) => {
+        dispatch(setLoadingAction(isLoading))
+    }
+
+    const resetKeys = () => {
+        dispatch(resetKeysAction())
+    }
+
     const fetchKeys = async (datacenterId) => {
-        dispatch(setLoading(true))
+        setLoading(true)
         try {
             const response = await fetch(`https://cwp-vidc-scat.cwpanama.com/llaves/api/selectLlaves.php?datacenter_id=${datacenterId}`, {
                 method: 'GET',
@@ -17,17 +29,17 @@ export const KeysProvider = ({ children }) => {
                 }
             })
             const data = await response.json()
-            dispatch(setKeys(data))
+            setKeys(data)
         } catch (error) {
             console.error("Error al obtener llaves:", error)
-            dispatch(setKeys([]))
+            setKeys([])
         } finally {
-            dispatch(setLoading(false))
+            setLoading(false)
         }
     }
 
     return (
-        <KeysContext.Provider value={{ state, fetchKeys, resetKeys: () => dispatch(resetKeys()) }}>
+        <KeysContext.Provider value={{ state, fetchKeys, resetKeys, setLoading }}>
             {children}
         </KeysContext.Provider>
     )
