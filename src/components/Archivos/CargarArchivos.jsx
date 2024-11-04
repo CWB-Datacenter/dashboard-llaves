@@ -35,10 +35,12 @@ export const CargarArchivos = () => {
             if (!response.ok) throw new Error('Upload failed')
             
             const result = await response.json()
-            console.log('Respuesta del servidor:', result) // Verifica la respuesta en la consola
+            setFile(null)
+            event.target.reset()
+            console.log('Respuesta del servidor:', result)
             await fetchKeys(selectedDatacenter)
         } catch (error) {
-            console.error('Error en la carga:', error) // Imprime el error en consola
+            console.error('Error en la carga:', error)
         }
     }
 
