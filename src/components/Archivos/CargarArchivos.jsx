@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { DatacenterContext } from '../../context/DatacenterContext'
 import { KeysContext } from '../../context/llaves/KeysContext'
 
-export const CargarArchivos = () => {
+export const CargarArchivos = ({ onUploadSuccess }) => {
     const [file, setFile] = useState(null)
     const { state } = useContext(DatacenterContext)
     const { fetchKeys } = useContext(KeysContext)
@@ -39,6 +39,7 @@ export const CargarArchivos = () => {
             event.target.reset()
             console.log('Respuesta del servidor:', result)
             await fetchKeys(selectedDatacenter)
+            if (onUploadSuccess) onUploadSuccess() // Se llama la función desde <Sidebar> para actualizar listado de docs
         } catch (error) {
             console.error('Error en la carga:', error)
         }
