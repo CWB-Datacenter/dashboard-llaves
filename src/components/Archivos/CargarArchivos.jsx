@@ -37,7 +37,7 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
             const result = await response.json()
             setFile(null)
             event.target.reset()
-            console.log('Respuesta del servidor:', result)
+            // console.log('Respuesta del servidor:', result)
             await fetchKeys(selectedDatacenter)
             if (onUploadSuccess) onUploadSuccess() // Se llama la función desde <Sidebar> para actualizar listado de docs
         } catch (error) {
