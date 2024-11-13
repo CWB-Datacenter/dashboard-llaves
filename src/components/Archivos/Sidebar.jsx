@@ -10,7 +10,7 @@ export const Sidebar = () => {
 
   const loadFiles = async () => {
     try {
-      const response = await fetch(`https://cwp-vidc-scat.cwpanama.com/llaves/api/selectArchivos.php?datacenter_id=${selectedDatacenter}`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/llaves/api/selectArchivos.php?datacenter_id=${selectedDatacenter}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

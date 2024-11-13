@@ -22,7 +22,7 @@ export const KeysProvider = ({ children }) => {
     const fetchKeys = async (datacenterId) => {
         setLoading(true)
         try {
-            const response = await fetch(`https://cwp-vidc-scat.cwpanama.com/llaves/api/selectLlaves.php?datacenter_id=${datacenterId}`, {
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/llaves/api/selectLlaves.php?datacenter_id=${datacenterId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

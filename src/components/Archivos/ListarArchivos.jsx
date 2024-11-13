@@ -1,7 +1,10 @@
 import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 
 export const ListarArchivos = ({ files }) => {
-    console.log(files)
+    // console.log(files)
+    const handleDownload = (fileId) => {
+        console.log(fileId)
+    }
     return (
         <>
             {files && files.length > 0 ? (
@@ -10,9 +13,12 @@ export const ListarArchivos = ({ files }) => {
                         <ListItem key={file.id}>
                             <ListItemIcon>
                                 {/* Puedes reemplazar esto por un icono real */}
-                                carpetita.svg
+                                svg
                             </ListItemIcon>
                             <ListItemText primary={file.nombre_archivo} secondary={file.fecha_subida} />
+                            <ListItemIcon onClick={ () => handleDownload(file.id) }>
+                                D
+                            </ListItemIcon>
                         </ListItem>
                     ))}
                 </List>

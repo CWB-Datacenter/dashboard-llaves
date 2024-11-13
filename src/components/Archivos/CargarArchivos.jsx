@@ -28,7 +28,7 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
         formData.append('datacenterId', Number(selectedDatacenter))
 
         try {
-            const response = await fetch(`https://cwp-vidc-scat.cwpanama.com/llaves/llaves.php`, {
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/llaves/llaves.php`, {
                 method: 'POST',
                 body: formData,
             })
