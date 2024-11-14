@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DatacenterContext } from '../../context/DatacenterContext'
-import { FormControl, MenuItem, Select } from '@mui/material'
+import { MenuItem, TextField } from '@mui/material'
 import { KeysContext } from '../../context/llaves/KeysContext'
 
 export const InputSelectIDC = () => {
-    const { state, setSelectedDatacenter } = useContext(DatacenterContext) // Solo usamos selectedDatacenter del contexto
+    const { state, setSelectedDatacenter } = useContext(DatacenterContext) 
     const { fetchKeys } = useContext(KeysContext)
     const [datacenters, setDatacenters] = useState([]) // Estado local para datacenters
 
-    // Función para cargar datacenters y selectedDatacenter desde la API
     const loadDatacenters = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/llaves/api/selectDatacenter.php`, {
@@ -27,12 +26,10 @@ export const InputSelectIDC = () => {
         }
     }
 
-    // Cargar los datacenters cuando el componente se monta
     useEffect(() => {
         loadDatacenters()
     }, [])
 
-    // Maneja el cambio de selección en el <Select>
     const handleChange = (event) => {
         const selectedDatacenterId = Number(event.target.value)
         setSelectedDatacenter(selectedDatacenterId)
@@ -40,14 +37,20 @@ export const InputSelectIDC = () => {
     }
 
     return (
-        <FormControl>
-            <Select label="Seleccione Datacenter" value={state.selectedDatacenter || ''} onChange={handleChange}>
-                {datacenters.map((dc) => (
-                    <MenuItem key={dc.id} value={dc.id}>
-                        {dc.datacenter}
-                    </MenuItem>
-                ))}
-            </Select>
-        </FormControl>
+        <TextField
+            select
+            label="Datacenter"
+            value={ state.selectedDatacenter || '' }
+            onChange={ handleChange }
+            helperText="Cambiar datacenter"
+            variant="standard"
+            sx={{width: '50%'}}
+        >
+            {datacenters.map((dc) => (
+                <MenuItem key={dc.id} value={dc.id}>
+                    {dc.datacenter}
+                </MenuItem>
+            ))}
+        </TextField>
     )
 }
