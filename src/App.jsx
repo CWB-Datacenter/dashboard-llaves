@@ -11,14 +11,15 @@ import './App.css'
 
 
 function App() {
-
   return (
-    <Grid container spacing={2}>
-      <Navbar />
-      <Grid size={{xs: 12, md: 8}} >
+    <Grid container sx={{ height: '100vh', flexDirection: { xs: 'column', md: 'row' }, overflow: 'hidden' }}>
+      <Grid size={12}>
+        <Navbar />
+      </Grid>
+      <Grid p={3} size={{xs: 12, md: 8}} sx={{ height: { xs: 'auto', md: '100%' }, overflow: 'auto' }}>
         <MainContent />
       </Grid>
-      <Grid size={{xs: 12, md: 4}} >
+      <Grid size={{xs: 12, md: 4}} sx={{ height: { xs: 'auto', md: '100%' }, backgroundColor: 'yellow' }}>
         <Sidebar />
       </Grid>
     </Grid>

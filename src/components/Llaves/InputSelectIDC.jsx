@@ -44,7 +44,8 @@ export const InputSelectIDC = () => {
             onChange={ handleChange }
             helperText="Cambiar datacenter"
             variant="standard"
-            sx={{width: '50%'}}
+            fullWidth
+            // sx={{width: '50%'}}
         >
             {datacenters.map((dc) => (
                 <MenuItem key={dc.id} value={dc.id}>

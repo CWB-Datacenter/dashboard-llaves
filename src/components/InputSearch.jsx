@@ -8,6 +8,6 @@ export const InputSearch = ({ setSearchTerm  }) => {
   }
   
   return (
-    <TextField label="Buscar llaves" variant='outlined' onChange={ handleSearchChange }/>
+    <TextField fullWidth label="Buscar llaves" variant='outlined' onChange={ handleSearchChange }/>
   )
 }
