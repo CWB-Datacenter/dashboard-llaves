@@ -13,9 +13,9 @@ export const MainContent = () => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: '16px',
-      width: '100%',
-      height: '100vh'
+      // padding: '16px',
+      // width: '100%',
+      // height: '100vh'
     }}>
       <InputSelectIDC />
       <InputSearch setSearchTerm={ setSearchTerm } />

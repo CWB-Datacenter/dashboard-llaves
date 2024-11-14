@@ -1,26 +1,22 @@
-import { Grid } from "@mui/material"
 import { Navbar } from "./components/Navbar"
 import { MainContent } from "./components/Llaves/MainContent"
 import { Sidebar } from "./components/Archivos/Sidebar"
+import Grid from '@mui/material/Grid2'
 import './App.css'
 
 
 function App() {
 
   return (
-    <div className="app">
+    <Grid container spacing={2}>
       <Navbar />
-      <div className="app-content">
-        <Grid container spacing={2} className="grid-container">
-          <Grid item xs={9}> 
-            <MainContent />
-          </Grid>
-          <Grid item xs={3}>
-            <Sidebar />
-          </Grid>
-        </Grid>
-      </div>
-    </div>
+      <Grid size={{xs: 12, md: 8}} >
+        <MainContent />
+      </Grid>
+      <Grid size={{xs: 12, md: 4}} >
+        <Sidebar />
+      </Grid>
+    </Grid>
   )
 }
 

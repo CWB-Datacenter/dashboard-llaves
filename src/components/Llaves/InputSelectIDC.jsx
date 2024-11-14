@@ -14,7 +14,7 @@ export const InputSelectIDC = () => {
             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/llaves/api/selectDatacenter.php`, {
                 method: 'GET',
                 headers: {
-                  'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
             })
             const data = await response.json()
@@ -41,13 +41,13 @@ export const InputSelectIDC = () => {
 
     return (
         <FormControl>
-        <Select label="Seleccione Datacenter" value={state.selectedDatacenter || ''} onChange={handleChange}>
-            {datacenters.map((dc) => (
-                <MenuItem key={dc.id} value={dc.id}>
-                    {dc.datacenter}
-                </MenuItem>
-            ))}
-        </Select>
-    </FormControl>
+            <Select label="Seleccione Datacenter" value={state.selectedDatacenter || ''} onChange={handleChange}>
+                {datacenters.map((dc) => (
+                    <MenuItem key={dc.id} value={dc.id}>
+                        {dc.datacenter}
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
     )
 }

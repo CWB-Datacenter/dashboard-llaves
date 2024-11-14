@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { CargarArchivos } from './CargarArchivos'
 import { ListarArchivos } from './ListarArchivos'
 import { DatacenterContext } from '../../context/DatacenterContext'
+import { Box } from '@mui/material'
 
 export const Sidebar = () => {
   const [files, setFiles] = useState([])
@@ -30,9 +31,9 @@ export const Sidebar = () => {
   
 
   return (
-    <div className='sidebar'>
+    <Box>
       <ListarArchivos files={ files }/>
       <CargarArchivos onUploadSuccess={ loadFiles }/>
-    </div>
+    </Box>
   )
 }

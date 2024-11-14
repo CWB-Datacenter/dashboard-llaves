@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { DatacenterContext } from '../../context/DatacenterContext'
 import { KeysContext } from '../../context/llaves/KeysContext'
+import { Button, FormControl, TextField, Typography } from '@mui/material'
 
 export const CargarArchivos = ({ onUploadSuccess }) => {
     const [file, setFile] = useState(null)
@@ -14,14 +15,8 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if (!file) {
-            alert('Seleccione un archivo')
-            return
-        }
-        if (!selectedDatacenter) {
-            alert('No se ha seleccionado un datacenter')
-            return
-        }
+        if (!file) return alert('Seleccione un archivo')
+        if (!selectedDatacenter) return alert('No se ha seleccionado un datacenter')
 
         const formData = new FormData()
         formData.append('excelFile', file)
@@ -33,11 +28,8 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
                 body: formData,
             })
             if (!response.ok) throw new Error('Upload failed')
-            
-            const result = await response.json()
             setFile(null)
             event.target.reset()
-            // console.log('Respuesta del servidor:', result)
             await fetchKeys(selectedDatacenter)
             if (onUploadSuccess) onUploadSuccess() // Se llama la función desde <Sidebar> para actualizar listado de docs
         } catch (error) {
@@ -46,9 +38,21 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="file" onChange={handleFileChange} accept=".xlsx, .xls" />
-            <button type="submit">Upload Excel</button>
+       <form onSubmit={ handleSubmit }>
+            <FormControl fullWidth margin="normal">
+                <Typography variant="h6" gutterBottom>
+                    Cargar Archivo de Llaves
+                </Typography>
+                <TextField
+                    type="file"
+                    onChange={ handleFileChange }
+                    accept=".xlsx, .xls"
+                    helperText="Seleccione un archivo Excel (.xlsx, .xls)"
+                />
+                <Button variant="outlined" type="submit">
+                    Subir registro
+                </Button>
+            </FormControl>
         </form>
     )
 }

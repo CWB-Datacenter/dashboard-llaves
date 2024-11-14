@@ -1,24 +1,22 @@
 /* Estilo para el contenedor de la aplicación */
-.app {
+/* .app {
     height: 100vh;
     display: flex;
     flex-direction: column;
     width: 100%;
   }
   
-  /* Asegura que el contenido esté bien distribuido debajo del Navbar */
   .app-content {
     flex-grow: 1;
     display: flex;
-    /* padding-top: 16px; */
+    padding-top: 16px;
   }
   
-  /* Grid container */
   .grid-container {
     width: 100%;
   }
 
-  /* .sidebar {
+  .sidebar {
     padding: 16px;
     border-left: 1px solid #ccc;
   }
