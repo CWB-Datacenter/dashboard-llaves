@@ -12,14 +12,16 @@ import './App.css'
 
 function App() {
   return (
-    <Grid container sx={{ height: '100vh', flexDirection: { xs: 'column', md: 'row' }, overflow: 'hidden' }}>
+    <Grid container sx={
+      { height: '100vh', flexDirection: { xs: 'column', md: 'row' }, flexWrap: { xs: 'nowrap', md: 'wrap' }}}>
       <Grid size={12}>
         <Navbar />
       </Grid>
-      <Grid p={3} size={{xs: 12, md: 8}} sx={{ height: { xs: 'auto', md: '100%' }, overflow: 'auto' }}>
+      {/* <Grid p={1} size={{xs: 12, md: 8}} sx={{ height: { xs: 'auto', md: '93%' }, display: 'flex', flexDirection:'column', justifyContent: 'end'}}> */}
+      <Grid size={{xs: 12, md: 8}} sx={{ height: { xs: 'auto', md: '93%'}}}>
         <MainContent />
       </Grid>
-      <Grid size={{xs: 12, md: 4}} sx={{ height: { xs: 'auto', md: '100%' }, backgroundColor: 'yellow' }}>
+      <Grid size={{xs: 12, md: 4}} >
         <Sidebar />
       </Grid>
     </Grid>

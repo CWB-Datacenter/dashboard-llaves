@@ -42,13 +42,13 @@ export const InputSelectIDC = () => {
             label="Datacenter"
             value={ state.selectedDatacenter || '' }
             onChange={ handleChange }
-            helperText="Cambiar datacenter"
+            // helperText="Cambiar datacenter"
             variant="standard"
             fullWidth
-            // sx={{width: '50%'}}
+            sx={{textTransform: 'capitalize'}}
         >
             {datacenters.map((dc) => (
-                <MenuItem key={dc.id} value={dc.id}>
+                <MenuItem sx={{textTransform: 'capitalize'}} key={dc.id} value={dc.id}>
                     {dc.datacenter}
                 </MenuItem>
             ))}
