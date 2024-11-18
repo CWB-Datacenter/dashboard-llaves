@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react'
 import { DatacenterContext } from '../../context/DatacenterContext'
 import { KeysContext } from '../../context/llaves/KeysContext'
-import { Button, FormControl, TextField, Typography } from '@mui/material'
+import { Box, Button, FormControl, Typography } from '@mui/material'
+import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 
 export const CargarArchivos = ({ onUploadSuccess }) => {
     const [file, setFile] = useState(null)
@@ -38,18 +39,29 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
     }
 
     return (
-       <form onSubmit={ handleSubmit }>
-            <FormControl fullWidth margin="normal">
-                <Typography variant="h6" gutterBottom>
-                    Cargar Archivo de Llaves
-                </Typography>
-                <TextField
+        <form onSubmit={handleSubmit}>
+            <FormControl fullWidth margin="normal" sx={{ textAlign: 'center' }}>
+                <input
                     type="file"
-                    onChange={ handleFileChange }
+                    id="file-input"
+                    style={{ display: 'none' }} // Oculta el input nativo
+                    onChange={handleFileChange}
                     accept=".xlsx, .xls"
-                    helperText="Seleccione un archivo Excel (.xlsx, .xls)"
                 />
-                <Button variant="outlined" type="submit">
+                <label htmlFor="file-input" style={{ cursor: 'pointer' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <DriveFolderUploadIcon sx={{ fontSize: '4em', color: '0' }} />
+                        <Typography variant="h6">
+                            Seleccionar archivo
+                        </Typography>
+                    </Box>
+                </label>
+                {file && (
+                    <Typography variant="body2" sx={{ marginTop: 1, width: '100%', maxWidth: '400px', alignSelf: 'center' }}>
+                        Archivo seleccionado: {file.name}
+                    </Typography>
+                )}
+                <Button color='secondary' variant="outlined" type="submit" sx={{ marginTop: 2, width: '100%', maxWidth: '300px', alignSelf: 'center' }}>
                     Subir registro
                 </Button>
             </FormControl>

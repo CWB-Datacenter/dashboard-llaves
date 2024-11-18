@@ -31,7 +31,10 @@ export const Sidebar = () => {
   
 
   return (
-    <Box>
+    <Box p={1} pb={6} sx={
+      {backgroundColor: 'var(--background-grey2)', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+        boxShadow: { xs: 'none', md: '-2px 0 5px rgba(0, 0, 0, 0.02)'}
+      }}>
       <ListarArchivos files={ files }/>
       <CargarArchivos onUploadSuccess={ loadFiles }/>
     </Box>

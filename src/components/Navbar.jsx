@@ -3,9 +3,9 @@ import React from 'react'
 
 export const Navbar = () => {
   return (
-    <AppBar position='static'>
+    <AppBar position='static' sx={{ backgroundColor: 'var(--background-purple)', boxShadow: 'none' }}>
         <Toolbar>
-            <Typography variant='h6'>
+            <Typography variant='subtitle1' sx={{ marginLeft: 'auto' }}>
                 Dahsboard de llaves
             </Typography>
         </Toolbar>

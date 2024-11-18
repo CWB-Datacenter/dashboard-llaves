@@ -5,6 +5,7 @@ import { KeysContext } from '../../context/llaves/KeysContext';
 const columns = [
   { id: 'codigo', label: 'Código', minWidth: 100 },
   { id: 'cliente_equipo', label: 'Cliente Equipo', minWidth: 170 },
+  { id: 'posicion', label: 'Posición', minWidth: 170 },
   { id: 'nombre_ubicacion', label: 'Ubicación', minWidth: 170 },
 ];
 
