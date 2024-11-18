@@ -16,7 +16,7 @@ export const MainContent = () => {
       <Grid2 size={12} p={2}>
         <InputSearch setSearchTerm={ setSearchTerm } />
       </Grid2>
-      <Grid2 px={2} size={12} sx={{ height: { xs: 'auto', md: '77%' }, overflow: 'auto'}}>
+      <Grid2 px={2} size={12} sx={{ height: { xs: 'auto', md: '77%' }, maxHeight: {xs: '650px'}, overflow: 'auto'}}>
         <KeyResults searchTerm={ searchTerm } />
       </Grid2>
     </Grid2>

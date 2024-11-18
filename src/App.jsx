@@ -17,8 +17,7 @@ function App() {
       <Grid size={12}>
         <Navbar />
       </Grid>
-      {/* <Grid p={1} size={{xs: 12, md: 8}} sx={{ height: { xs: 'auto', md: '93%' }, display: 'flex', flexDirection:'column', justifyContent: 'end'}}> */}
-      <Grid size={{xs: 12, md: 8}} sx={{ height: { xs: 'auto', md: '93%'}}}>
+      <Grid size={{xs: 12, md: 8}} sx={{ height: { xs: 'auto', md: '90%', xl: '93%'}}}>
         <MainContent />
       </Grid>
       <Grid size={{xs: 12, md: 4}} >
