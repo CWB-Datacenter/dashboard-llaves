@@ -11,6 +11,9 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
     const { selectedDatacenter } = state
 
     const handleFileChange = (event) => {
+        const file = event.target.files[0]
+        const validExtensions = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']
+        if (file && !validExtensions.includes(file.type)) { return alert('Solo se permiten archivos Excel (.xlsx, .xls)') }
         setFile(event.target.files[0])
     }
 
@@ -48,20 +51,24 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
                     onChange={handleFileChange}
                     accept=".xlsx, .xls"
                 />
-                <label htmlFor="file-input" style={{ cursor: 'pointer' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <DriveFolderUploadIcon sx={{ fontSize: '4em', color: '0' }} />
+                <label htmlFor="file-input" style={{ cursor: 'pointer', alignSelf: 'center' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        <DriveFolderUploadIcon sx={{ fontSize: '4em','&:hover': { fontSize: '4.06em' }}} />
                         <Typography variant="h6">
                             Seleccionar archivo
                         </Typography>
                     </Box>
                 </label>
-                {file && (
-                    <Typography variant="body2" sx={{ marginTop: 1, width: '100%', maxWidth: '400px', alignSelf: 'center' }}>
+                {file ? (
+                    <Typography variant="body2" sx={{ marginTop: 1, width: '100%', maxWidth: '400px', alignSelf: 'center', height: '2.5em' }}>
                         Archivo seleccionado: {file.name}
                     </Typography>
+                ) : (
+                    <Typography variant="body2" sx={{ marginTop: 1, width: '100%', maxWidth: '400px', alignSelf: 'center', height: '2.5em' }}>
+                        Seleccione un archivo Excel (.xlsx, .xls).
+                    </Typography>
                 )}
-                <Button color='secondary' variant="outlined" type="submit" sx={{ marginTop: 2, width: '100%', maxWidth: '300px', alignSelf: 'center' }}>
+                <Button color='secondary' variant="outlined" type="submit" sx={{ marginTop: 1, width: '100%', maxWidth: '300px', alignSelf: 'center' }}>
                     Subir registro
                 </Button>
             </FormControl>

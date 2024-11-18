@@ -1,5 +1,5 @@
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
+import { Box, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material'
 
 export const ListarArchivos = ({ files }) => {
     const handleDownload = async (fileId) => {
@@ -36,7 +36,9 @@ export const ListarArchivos = ({ files }) => {
                     ))}
                 </List>
             ) : (
-                <>No hay documentos en la base de datos</>
+                <Box mt={2} sx={{textAlign: 'center'}}>
+                    <Typography variant="body2">No hay documentos en la base de datos</Typography>
+                </Box>
             )}
         </>
 
