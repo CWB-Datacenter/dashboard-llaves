@@ -17,10 +17,16 @@ export const KeyResults = ({ searchTerm }) => {
   const safeKeys = Array.isArray(keys) ? keys : []
 
   // Filtrar llaves en base al término de búsqueda
-  const filteredKeys = safeKeys.filter(key =>
-    (key.cliente_equipo ? key.cliente_equipo.toLowerCase() : '').includes(searchTerm.toLowerCase())
-  )
-
+  const filteredKeys = safeKeys.filter(key => {
+    const searchValue = searchTerm.toLowerCase()
+    return (
+      (key.codigo ? key.codigo.toLowerCase() : '').includes(searchValue) ||
+      (key.cliente_equipo ? key.cliente_equipo.toLowerCase() : '').includes(searchValue) ||
+      (key.posicion ? key.posicion.toLowerCase() : '').includes(searchValue) ||
+      (key.nombre_ubicacion ? key.nombre_ubicacion.toLowerCase() : '').includes(searchValue)
+    )
+  })
+  
   // Paginación de la tabla
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
