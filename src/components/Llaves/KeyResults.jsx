@@ -1,36 +1,38 @@
-import React, { useContext } from 'react';
-import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@mui/material';
-import { KeysContext } from '../../context/llaves/KeysContext';
+import React, { useContext } from 'react'
+import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@mui/material'
+import { KeysContext } from '../../context/llaves/KeysContext'
+import NorthIcon from '@mui/icons-material/North'
+import SouthIcon from '@mui/icons-material/South'
 
 const columns = [
   { id: 'codigo', label: 'Código', minWidth: 100 },
   { id: 'cliente_equipo', label: 'Cliente Equipo', minWidth: 170 },
   { id: 'posicion', label: 'Posición', minWidth: 170 },
   { id: 'nombre_ubicacion', label: 'Ubicación', minWidth: 170 },
-];
+]
 
 export const KeyResults = ({ searchTerm }) => {
-  const { state } = useContext(KeysContext);
-  const { keys, loading } = state;
-  const safeKeys = Array.isArray(keys) ? keys : [];
+  const { state } = useContext(KeysContext)
+  const { keys, loading } = state
+  const safeKeys = Array.isArray(keys) ? keys : []
 
   // Filtrar llaves en base al término de búsqueda
   const filteredKeys = safeKeys.filter(key =>
     (key.cliente_equipo ? key.cliente_equipo.toLowerCase() : '').includes(searchTerm.toLowerCase())
-  );
+  )
 
   // Paginación de la tabla
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
   const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+    setPage(newPage)
+  }
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+    setRowsPerPage(+event.target.value)
+    setPage(0)
+  }
 
   return (
     <Box>
@@ -38,12 +40,12 @@ export const KeyResults = ({ searchTerm }) => {
         <Typography>Cargando llaves...</Typography>
       ) : (
         <Paper sx={{ width: '100%', boxShadow: 'none' }}>
-          <TableContainer sx={{backgroundColor: 'var(--background-grey)', cursor: 'pointer'}}>
+          <TableContainer sx={{ backgroundColor: 'var(--background-grey)', cursor: 'pointer' }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   {columns.map((column) => (
-                    <TableCell sx={{backgroundColor: 'var(--background-grey)'}}
+                    <TableCell sx={{ backgroundColor: 'var(--background-grey)' }}
                       key={column.id}
                       align={column.align || 'left'}
                       style={{ minWidth: column.minWidth }}
@@ -57,14 +59,44 @@ export const KeyResults = ({ searchTerm }) => {
                 {(searchTerm ? filteredKeys : safeKeys)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((key) => (
-                    <TableRow sx={{textTransform: 'capitalize'}} hover role="checkbox" tabIndex={-1} key={key.id}>
+                    <TableRow
+                      sx={{
+                        textTransform: 'capitalize',
+                        opacity: key.cliente_equipo?.toLowerCase() === 'libre' ? 0.3 : 1, // Aplica opacidad si el cliente_equipo es "Libre"
+                      }}
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={key.id}
+                    >
                       {columns.map((column) => {
-                        const value = key[column.id];
+                        let value = key[column.id]
+                        // Mostrar el ícono si la columna es 'nombre_ubicacion'
+                        if (column.id === 'nombre_ubicacion') {
+                          value = (
+                            <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
+                              {value}
+                              {value?.toLowerCase() === 'planta alta' && (
+                                <NorthIcon sx={{ fontSize: '.95em', color: 'green', marginLeft: 0.5 }} />
+                              )}
+                              {value?.toLowerCase() === 'planta baja' && (
+                                <SouthIcon sx={{ fontSize: '.95em', color: 'red', marginLeft: 0.5 }} />
+                              )}
+                            </Box>
+                          )
+                        }
                         return (
-                          <TableCell key={column.id} align={column.align || 'left'}>
+                          <TableCell
+                            key={column.id}
+                            align={column.align || 'left'}
+                            sx={{
+                              fontWeight: column.id === 'codigo' || column.id === 'posicion' ? 'bold' : 'normal',
+                              color: column.id === 'codigo' ? '#8e24aa' : column.id === 'posicion' ? '#42a5f5' : 'inherit',
+                            }}
+                          >
                             {value !== undefined && value !== null ? value : '-'}
                           </TableCell>
-                        );
+                        )
                       })}
                     </TableRow>
                   ))}
@@ -76,9 +108,11 @@ export const KeyResults = ({ searchTerm }) => {
                   </TableRow>
                 )}
               </TableBody>
+
+
             </Table>
           </TableContainer>
-          <TablePagination sx={{backgroundColor: 'var(--background-grey)'}}
+          <TablePagination sx={{ backgroundColor: 'var(--background-grey)' }}
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
             count={searchTerm ? filteredKeys.length : safeKeys.length}
@@ -90,5 +124,5 @@ export const KeyResults = ({ searchTerm }) => {
         </Paper>
       )}
     </Box>
-  );
-};
+  )
+}
