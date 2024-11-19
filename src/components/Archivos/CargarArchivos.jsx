@@ -4,7 +4,7 @@ import { KeysContext } from '../../context/llaves/KeysContext'
 import { Box, Button, FormControl, Typography } from '@mui/material'
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 
-export const CargarArchivos = ({ onUploadSuccess }) => {
+export const CargarArchivos = ({ onUploadSuccess, datacenter }) => {
     const [file, setFile] = useState(null)
     const { state } = useContext(DatacenterContext)
     const { fetchKeys } = useContext(KeysContext)
@@ -12,8 +12,22 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0]
+
+        // Verificar que el archivo sea de tipo Excel
         const validExtensions = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']
-        if (file && !validExtensions.includes(file.type)) { return alert('Solo se permiten archivos Excel (.xlsx, .xls)') }
+        if (file && !validExtensions.includes(file.type)) return alert('Solo se permiten archivos Excel (.xlsx, .xls)')
+
+        // Verificar que el nombre del archivo comience con el código especificado
+        const expectedPrefix = `${import.meta.env.VITE_REGISTRO_LLAVES.toLowerCase()}`
+        if (file && !file.name.toLowerCase().startsWith(expectedPrefix)) return alert(`Unicamente archivos con el código "${expectedPrefix}"`)
+
+        // Verificar que unicamente se suba el archivo correcto según el datacenter seleccionado:
+        if (datacenter === 1 && !file.name.toLowerCase().startsWith(import.meta.env.VITE_REGISTRO_LLAVES_BAL.toLowerCase()))
+            return alert(`El registro de llaves no corresponde a balboa, o el nombre del registro ha sido modificado`)
+
+        if (datacenter === 2 && !file.name.toLowerCase().startsWith(import.meta.env.VITE_REGISTRO_LLAVES_PP.toLowerCase()))
+            return alert(`El registro de llaves no corresponde a PP, o el nombre del registro ha sido modificado`)
+
         setFile(event.target.files[0])
     }
 
@@ -52,8 +66,8 @@ export const CargarArchivos = ({ onUploadSuccess }) => {
                     accept=".xlsx, .xls"
                 />
                 <label htmlFor="file-input" style={{ cursor: 'pointer', alignSelf: 'center' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                        <DriveFolderUploadIcon sx={{ fontSize: '4em','&:hover': { fontSize: '4.06em' }}} />
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <DriveFolderUploadIcon sx={{ fontSize: '4em', '&:hover': { fontSize: '4.06em' } }} />
                         <Typography variant="h6">
                             Seleccionar archivo
                         </Typography>

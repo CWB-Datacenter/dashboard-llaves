@@ -29,7 +29,6 @@ export const Sidebar = () => {
     if(selectedDatacenter) loadFiles()
   }, [selectedDatacenter])
   
-
   return (
     // <></>
     <Box p={1} pb={6} sx={
@@ -37,7 +36,7 @@ export const Sidebar = () => {
         boxShadow: { xs: 'none', md: '-2px 0 5px rgba(0, 0, 0, 0.02)'}
       }}>
       <ListarArchivos files={ files }/>
-      <CargarArchivos onUploadSuccess={ loadFiles }/>
+      <CargarArchivos onUploadSuccess={ loadFiles } datacenter={selectedDatacenter} />
     </Box>
   )
 }
