@@ -1,5 +1,6 @@
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { Box, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material'
+import { Spinner } from '../Spinner';
 
 export const ListarArchivos = ({ files }) => {
     const handleDownload = async (fileId) => {

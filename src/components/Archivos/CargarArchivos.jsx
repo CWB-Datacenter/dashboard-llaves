@@ -1,11 +1,13 @@
+import { Spinner } from '../Spinner'
 import { useContext, useState } from 'react'
 import { DatacenterContext } from '../../context/DatacenterContext'
 import { KeysContext } from '../../context/llaves/KeysContext'
 import { Box, Button, FormControl, Typography } from '@mui/material'
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
 
 export const CargarArchivos = ({ onUploadSuccess, datacenter }) => {
     const [file, setFile] = useState(null)
+    const [loading, setLoading] = useState(false); // Estado de carga
     const { state } = useContext(DatacenterContext)
     const { fetchKeys } = useContext(KeysContext)
     const { selectedDatacenter } = state
@@ -39,7 +41,7 @@ export const CargarArchivos = ({ onUploadSuccess, datacenter }) => {
         const formData = new FormData()
         formData.append('excelFile', file)
         formData.append('datacenterId', Number(selectedDatacenter))
-
+        setLoading(true)
         try {
             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/llaves/llaves.php`, {
                 method: 'POST',
@@ -52,39 +54,68 @@ export const CargarArchivos = ({ onUploadSuccess, datacenter }) => {
             if (onUploadSuccess) onUploadSuccess() // Se llama la función desde <Sidebar> para actualizar listado de docs
         } catch (error) {
             console.error('Error en la carga:', error)
+        } finally {
+            setLoading(false)
         }
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <FormControl fullWidth margin="normal" sx={{ textAlign: 'center' }}>
-                <input
-                    type="file"
-                    id="file-input"
-                    style={{ display: 'none' }} // Oculta el input nativo
-                    onChange={handleFileChange}
-                    accept=".xlsx, .xls"
-                />
-                <label htmlFor="file-input" style={{ cursor: 'pointer', alignSelf: 'center' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <DriveFolderUploadIcon sx={{ fontSize: '4em', '&:hover': { fontSize: '4.06em' } }} />
-                        <Typography variant="h6">
-                            Seleccionar archivo
-                        </Typography>
-                    </Box>
-                </label>
-                {file ? (
-                    <Typography variant="body2" sx={{ marginTop: 1, width: '100%', maxWidth: '400px', alignSelf: 'center', height: '2.5em' }}>
-                        Archivo seleccionado: {file.name}
-                    </Typography>
+                {loading ? (
+                    <Spinner />
                 ) : (
-                    <Typography variant="body2" sx={{ marginTop: 1, width: '100%', maxWidth: '400px', alignSelf: 'center', height: '2.5em' }}>
-                        Seleccione un archivo Excel (.xlsx, .xls).
-                    </Typography>
+                    <>
+                        <input
+                            type="file"
+                            id="file-input"
+                            style={{ display: 'none' }} // Oculta el input nativo
+                            onChange={handleFileChange}
+                            accept=".xlsx, .xls"
+                        />
+                        <label htmlFor="file-input" style={{ cursor: 'pointer', alignSelf: 'center' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <DriveFolderUploadIcon sx={{ fontSize: '4em', '&:hover': { fontSize: '4.06em' } }} />
+                                <Typography variant="h6">Seleccionar archivo</Typography>
+                            </Box>
+                        </label>
+                        {file ? (
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    marginTop: 1,
+                                    width: '100%',
+                                    maxWidth: '400px',
+                                    alignSelf: 'center',
+                                    height: '2.5em',
+                                }}
+                            >
+                                Archivo seleccionado: {file.name}
+                            </Typography>
+                        ) : (
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    marginTop: 1,
+                                    width: '100%',
+                                    maxWidth: '400px',
+                                    alignSelf: 'center',
+                                    height: '2.5em',
+                                }}
+                            >
+                                Seleccione un archivo Excel (.xlsx, .xls).
+                            </Typography>
+                        )}
+                        <Button
+                            color="secondary"
+                            variant="outlined"
+                            type="submit"
+                            sx={{ marginTop: 1, width: '100%', maxWidth: '300px', alignSelf: 'center' }}
+                        >
+                            Subir registro
+                        </Button>
+                    </>
                 )}
-                <Button color='secondary' variant="outlined" type="submit" sx={{ marginTop: 1, width: '100%', maxWidth: '300px', alignSelf: 'center' }}>
-                    Subir registro
-                </Button>
             </FormControl>
         </form>
     )
