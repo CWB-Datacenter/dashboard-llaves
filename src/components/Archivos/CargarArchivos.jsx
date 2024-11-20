@@ -111,6 +111,7 @@ export const CargarArchivos = ({ onUploadSuccess, datacenter }) => {
                             variant="outlined"
                             type="submit"
                             sx={{ marginTop: 1, width: '100%', maxWidth: '300px', alignSelf: 'center' }}
+                            disabled={ loading } 
                         >
                             Subir registro
                         </Button>
