@@ -5,7 +5,7 @@ import { Sidebar } from "../components/Archivos/Sidebar"
 
 export const LlavesPage = () => (
     <Grid container sx={{
-        height: "100vh",
+        height: "calc(100vh - 64px)",
         flexDirection: { xs: "column", md: "row" },
         flexWrap: { xs: "nowrap", md: "wrap" }
     }}>

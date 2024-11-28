@@ -2,6 +2,7 @@ import { Navbar } from '../components/Navbar'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { LlavesPage } from '../Pages/LlavesPage'
 import { QRCargaPage } from '../Pages/QRCargaPage'
+import { Box } from '@mui/material'
 
 export const AppRouter = () => {
     return (
