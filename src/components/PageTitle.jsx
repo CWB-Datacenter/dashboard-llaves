@@ -9,7 +9,7 @@ export const PageTitle = () => {
     switch (location.pathname) {
       case '/llaves':
         return 'Dashboard de Llaves'
-      case '/qr':
+      case '/qrcarga':
         return 'Códigos QR de Carga'
       default:
         return 'Dashboard'
