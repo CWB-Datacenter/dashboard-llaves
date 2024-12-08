@@ -1,12 +1,17 @@
 import { Box, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 
+const today = new Date()
+const day = String(today.getDate()).padStart(2, "0")
+const month = String(today.getMonth() + 1).padStart(2, "0")
+const year = String(today.getFullYear()).slice()
+
 const initialState = `ID de Cliente: LOC####
 Cliente: Nombre_de_la_Empresa_propietaria
 Responsable: Nombre_de_la_persona_que_entrega_el_articulo
 Teléfono: ####-#### / ####-####
 Email: Usuario@DominioDelCliente.com
-Fecha de Ingreso: dd/mm/aaaa
+Fecha de Ingreso: ${day}/${month}/${year}
 Marca: Dell
 Modelo: Poweredge 2950
 Registrado por: Nombre_de_Especialista_IDC
@@ -42,16 +47,14 @@ export const Formulario = ({ onChange }) => {
             </Typography>
             <TextField label="Plantilla Código QR"
                 multiline
-                rows={10}
+                minRows={5}
+                maxRows={12}
                 variant="outlined"
                 onChange={handleInputChange}
                 fullWidth
                 helperText="Agregue o elimine campos de ser requerido"
                 value={inputValue}>
             </TextField>
-            {/* <a href="http://172.18.229.227/portal-idc-cwp/index.php/documentos-idc/2015-07-20-02-24-38/435-idcplt01-201406-036-politica-para-el-area-de-carga" target="_blank" rel="noopener noreferrer">
-                idcplt01-201406-036_politica_para_el_area_de_carga
-            </a> */}
             <Typography mt={2} variant="subtitle2" component="a" href="http://172.18.229.227/portal-idc-cwp/index.php/documentos-idc/2015-07-20-02-24-38/435-idcplt01-201406-036-politica-para-el-area-de-carga" target="_blank" rel="noopener noreferrer">
                 idcplt01-201406-036_politica_para_el_area_de_carga
             </Typography>
