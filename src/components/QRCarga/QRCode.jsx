@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { QRCodeCanvas } from 'qrcode.react'
 import { Box, Button, Typography } from '@mui/material'
-import DownloadIcon from '@mui/icons-material/Download';
+import DownloadIcon from '@mui/icons-material/Download'
+import { yyMMdd } from '../../helpers/date'
 
 export const QRCode = ({ data, templateImage }) => {
   const qrRef = useRef()
@@ -25,7 +26,7 @@ export const QRCode = ({ data, templateImage }) => {
       context.drawImage(template, 0, 0)
 
       // Dibuja el QR en el canvas
-      const qrSize = 280 // Tamaño del QR en píxeles
+      const qrSize = 300 // Tamaño del QR en píxeles
       const qrX = (canvas.width - qrSize) / 1.1 // Centrado en X
       const qrY = (canvas.height - qrSize) / 2 // Centrado en Y
       context.drawImage(qrCanvas, qrX, qrY, qrSize, qrSize)
@@ -34,7 +35,7 @@ export const QRCode = ({ data, templateImage }) => {
       const finalImage = canvas.toDataURL('image/png')
       const link = document.createElement('a')
       link.href = finalImage
-      link.download = 'qr_with_template.png'
+      link.download = `${yyMMdd()}_codigoqr_carga.png`
       link.click()
     }
   }

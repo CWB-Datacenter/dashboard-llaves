@@ -1,17 +1,13 @@
 import { Box, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
-
-const today = new Date()
-const day = String(today.getDate()).padStart(2, "0")
-const month = String(today.getMonth() + 1).padStart(2, "0")
-const year = String(today.getFullYear()).slice()
+import { useState } from 'react'
+import { ddMMyy } from '../../helpers/date'
 
 const initialState = `ID de Cliente: LOC####
 Cliente: Nombre_de_la_Empresa_propietaria
 Responsable: Nombre_de_la_persona_que_entrega_el_articulo
 Teléfono: ####-#### / ####-####
 Email: Usuario@DominioDelCliente.com
-Fecha de Ingreso: ${day}/${month}/${year}
+Fecha de Ingreso: ${ddMMyy()}
 Marca: Dell
 Modelo: Poweredge 2950
 Registrado por: Nombre_de_Especialista_IDC
