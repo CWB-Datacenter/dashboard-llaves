@@ -6,17 +6,21 @@ A React-based application designed for efficient key lookup, QR code generation,
 
 ## Description
 
-Task Manager is a user-friendly application that allows users to create, edit, and manage tasks efficiently. It features a clean interface, drag-and-drop task organization, and real-time updates. This project is ideal for individuals or teams looking for a lightweight, yet powerful, task management solution.
+The Key Lookup and QR Labeling Tool is a specialized application designed to streamline the process of managing keys, generating QR codes, and labeling boxes. It enables users to upload key data from Excel files, store it in a MySQL database, and generate QR codes for easy tagging and retrieval. This application is built with a modern tech stack, ensuring fast performance and a seamless user experience.
 
 ---
 
 ## Features
 
-- Add, edit, and delete tasks.
-- Organize tasks into customizable categories.
-- Drag-and-drop functionality for task prioritization.
-- Responsive design for desktop and mobile devices.
-- Persistent data storage using localStorage.
+- Upload key data from Excel files to a MySQL database.
+- Search and retrieve key information efficiently.
+- Generate and download QR codes for labeling boxes.
+- Responsive and user-friendly interface built with MUI-Material.
+- Single Page Application (SPA) architecture for a smooth user experience.
+- React Router DOM for seamless navigation between the key lookup and QR code sections.
+- Utilization of React hooks for state management and component lifecycle handling.
+- Context API for efficient key data management across the application.
+- Secure data management with a PHP backend.
 
 ---
 
@@ -27,13 +31,13 @@ To run this project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/task-manager.git
+   git clone https://github.com/CWB-Datacenter/dashboard-llaves
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd task-manager
+   cd dashboard-llaves
    ```
 
 3. Install dependencies:
@@ -45,53 +49,84 @@ To run this project locally, follow these steps:
 4. Start the development server:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
-The application will run on `http://localhost:3000`.
+The application will run on a local development server, typically accessible at http://localhost:5173.
 
 ---
 
 ## Project Structure
 
 ```
-/src
-  /components   # Reusable React components
-  /pages        # Main views (e.g., Dashboard, Settings)
-  /hooks        # Custom hooks for shared logic
-  /assets       # Images, icons, and styles
-  /utils        # Helper functions
+Dashboard-Llaves/
+├── public/                # Archivos estáticos (index.html)
+├── src/
+│   ├── components/       # Componentes reutilizables
+│   │   ├── Archivos/     # Componentes para la gestión de archivos
+│   │   │   ├── CargarArchivos.jsx
+│   │   │   └── ListarArchivos.jsx
+│   │   ├── Llaves/       # Componentes para la gestión de llaves
+│   │   │   ├── InputSelectIDC.jsx
+│   │   │   ├── KeyResults.jsx
+│   │   │   └── MainContent.jsx
+│   │   ├── QRCarga/      # Componentes para la generación de QR
+│   │   │   ├── Formulario.jsx
+│   │   │   └── QRCode.jsx
+│   │   ├── InputSearch.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── PageTitle.jsx
+│   │   └── Spinner.jsx
+│   ├── context/          # Manejo del estado de la aplicación (Context API)
+│   │   ├── Ilaves/       # Contexto para la gestión de llaves
+│   │   │   ├── keysActions.js
+│   │   │   ├── KeysContext.jsx
+│   │   │   └── keysReducer.js
+│   │   ├── datacenterActions.js
+│   │   ├── DatacenterContext.jsx
+│   │   └── datacenterReducer.js
+│   ├── helpers/          # Funciones de utilidad
+│   │   └── date.js
+│   ├── Pages/            # Componentes de página
+│   │   ├── LlavesPage.jsx
+│   │   └── QRCargaPage.jsx
+│   ├── router/           # Configuración del enrutamiento
+│   │   └── AppRouter.jsx
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx         # Punto de entrada de la aplicación
+├── .gitignore
+├── @eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── server.js            # Archivo de servidor (si aplica)
+└── vite.config.js
 ```
 
 ---
 
 ## Available Scripts
 
-- `npm start`: Runs the app in development mode.
+- `npm run dev`: Runs the app in development mode.
 - `npm run build`: Builds the app for production.
-- `npm test`: Launches the test runner.
-- `npm run eject`: Ejects the configuration (use with caution).
+- `npm run preview`: Previews the built application.
 
 ---
 
 ## Technologies Used
 
-- **React**: Frontend library.
-- **React Router**: For navigation.
-- **TailwindCSS**: For styling.
-- **localStorage**: For data persistence.
-
----
-
-## Contributing
-
-Contributions are welcome! To contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature (`git checkout -b feature-name`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature-name`).
-5. Create a pull request.
+# Frontend:
+- React with Vite: Fast and modern frontend development.
+- MUI-Material: For responsive and accessible UI components.
+- React Router DOM: For client-side navigation.
+- Context API: For global state management.
+- React Hooks: For functional, clean, and reusable components.
+# Backend:
+- PHP: For server-side processing and database interaction.
+- MySQL: For secure and efficient data storage.
 
 ---
 
@@ -103,9 +138,9 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 
 ## Contact
 
-- **Author**: [Your Name](https://github.com/yourusername)
-- **Email**: [youremail@example.com](mailto\:youremail@example.com)
-- **GitHub**: [https://github.com/yourusername](https://github.com/yourusername)
+- **Author**: [AbdielP](https://github.com/Abdielp)
+- **Email**: [abdiel.pinzonc@gmail.com](mailto\:abdiel.pinzonc@gmail.com)
+- **GitHub**: [https://github.com/Abdielp](https://github.com/Abdielp)
 
 ---
 
