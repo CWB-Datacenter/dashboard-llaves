@@ -145,7 +145,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 ## Screenshots
 
 ### Dashboard keys View
-![Dashboard keys View](./screenshots/dashboard_llaves_.png)
+![Dashboard keys View](./screenshots/dashboard_llaves.png)
 
 ### Dashboard keys - search feature
 ![Search feature](./screenshots/search.png)
