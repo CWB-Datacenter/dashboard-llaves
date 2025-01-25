@@ -57,55 +57,53 @@ The application will run on a local development server, typically accessible at 
 ---
 
 ## Project Structure
-
 ```
-Dashboard-Llaves/
-├── public/                # Archivos estáticos (index.html)
-├── src/
-│   ├── components/       # Componentes reutilizables
-│   │   ├── Archivos/     # Componentes para la gestión de archivos
-│   │   │   ├── CargarArchivos.jsx
-│   │   │   └── ListarArchivos.jsx
-│   │   ├── Llaves/       # Componentes para la gestión de llaves
-│   │   │   ├── InputSelectIDC.jsx
-│   │   │   ├── KeyResults.jsx
-│   │   │   └── MainContent.jsx
-│   │   ├── QRCarga/      # Componentes para la generación de QR
-│   │   │   ├── Formulario.jsx
-│   │   │   └── QRCode.jsx
-│   │   ├── InputSearch.jsx
-│   │   ├── Navbar.jsx
-│   │   ├── PageTitle.jsx
-│   │   └── Spinner.jsx
-│   ├── context/          # Manejo del estado de la aplicación (Context API)
-│   │   ├── Ilaves/       # Contexto para la gestión de llaves
-│   │   │   ├── keysActions.js
-│   │   │   ├── KeysContext.jsx
-│   │   │   └── keysReducer.js
-│   │   ├── datacenterActions.js
-│   │   ├── DatacenterContext.jsx
-│   │   └── datacenterReducer.js
-│   ├── helpers/          # Funciones de utilidad
-│   │   └── date.js
-│   ├── Pages/            # Componentes de página
-│   │   ├── LlavesPage.jsx
-│   │   └── QRCargaPage.jsx
-│   ├── router/           # Configuración del enrutamiento
-│   │   └── AppRouter.jsx
-│   ├── App.css
-│   ├── App.jsx
-│   ├── index.css
-│   └── main.jsx         # Punto de entrada de la aplicación
-├── .gitignore
-├── @eslint.config.js
-├── index.html
-├── package-lock.json
-├── package.json
-├── README.md
-├── server.js            # Archivo de servidor (si aplica)
-└── vite.config.js
+📂 Dashboard-Llaves/
+├── 📁 public/                # Static files (index.html)
+├── 📁 src/
+│   ├── 📁 components/        # Reusable components
+│   │   ├── 📁 Archivos/      # Components for file management
+│   │   │   ├── 📄 CargarArchivos.jsx
+│   │   │   └── 📄 ListarArchivos.jsx
+│   │   ├── 📁 Llaves/        # Components for key management
+│   │   │   ├── 📄 InputSelectIDC.jsx
+│   │   │   ├── 📄 KeyResults.jsx
+│   │   │   └── 📄 MainContent.jsx
+│   │   ├── 📁 QRCarga/       # Components for QR generation
+│   │   │   ├── 📄 Formulario.jsx
+│   │   │   └── 📄 QRCode.jsx
+│   │   ├── 📄 InputSearch.jsx
+│   │   ├── 📄 Navbar.jsx
+│   │   ├── 📄 PageTitle.jsx
+│   │   └── 📄 Spinner.jsx
+│   ├── 📁 context/           # Application state management (Context API)
+│   │   ├── 📁 Llaves/        # Context for key management
+│   │   │   ├── 📄 keysActions.js
+│   │   │   ├── 📄 KeysContext.jsx
+│   │   │   └── 📄 keysReducer.js
+│   │   ├── 📄 datacenterActions.js
+│   │   ├── 📄 DatacenterContext.jsx
+│   │   └── 📄 datacenterReducer.js
+│   ├── 📁 helpers/           # Utility functions
+│   │   └── 📄 date.js
+│   ├── 📁 Pages/             # Page components
+│   │   ├── 📄 LlavesPage.jsx
+│   │   └── 📄 QRCargaPage.jsx
+│   ├── 📁 router/            # Routing configuration
+│   │   └── 📄 AppRouter.jsx
+│   ├── 📄 App.css
+│   ├── 📄 App.jsx
+│   ├── 📄 index.css
+│   └── 📄 main.jsx          # Application entry point
+├── 📄 .gitignore
+├── 📄 @eslint.config.js
+├── 📄 index.html
+├── 📄 package-lock.json
+├── 📄 package.json
+├── 📄 README.md
+├── 📄 server.js             # Server file (if applicable)
+└── 📄 vite.config.js
 ```
-
 ---
 
 ## Available Scripts
@@ -146,7 +144,17 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 
 ## Screenshots
 
-&#x20;
+### Dashboard keys View
+![Dashboard keys View](./screenshots/dashboard_llaves_.png)
+
+### Dashboard keys - search feature
+![Search feature](./screenshots/search.png)
+
+### Dashboard QR Code View
+![Dashboard QR code](./screenshots/dashboard_qr.png)
+
+### QR Code
+![QR code](./screenshots/qrcargo.png)
 
 Feel free to reach out if you have any questions or suggestions!
 
